@@ -1,4 +1,6 @@
+import 'package:adhaarhackathon/thirdpg.dart';
 import 'package:flutter/material.dart';
+import 'package:adhaarhackathon/secondpg.dart';
 
 void main() {
   runApp(MaterialApp(
@@ -43,7 +45,7 @@ class _myappState extends State<myapp> {
                   child: Center(
                     child: ListView(
                       children: [
-                        Padding(padding: EdgeInsets.only(top: 10)),
+                        Padding(padding: const EdgeInsets.only(top: 10)),
                         Image(
                           image: const AssetImage("images/logo.jpg"),
                           width: 150,
@@ -52,11 +54,11 @@ class _myappState extends State<myapp> {
                         Padding(
                           padding: const EdgeInsets.only(
                               top: 12.0, right: 8.0, left: 8.0),
-                          child: TextField(
+                          child: TextFormField(
                             keyboardType: TextInputType.number,
                             decoration: InputDecoration(
-                                labelText: "AADHAAR NUMBER",
-                                hintText: "Enter Your Aadhaar Number",
+                                labelText: "UID NUMBER",
+                                hintText: "Enter Your UID Number",
                                 border: OutlineInputBorder(
                                     borderRadius: BorderRadius.circular(6.0))),
                           ),
@@ -64,7 +66,7 @@ class _myappState extends State<myapp> {
                         Padding(
                           padding: const EdgeInsets.only(
                               right: 8.0, left: 8.0, top: 12.0),
-                          child: TextField(
+                          child: TextFormField(
                             keyboardType: TextInputType.number,
                             decoration: InputDecoration(
                                 labelText: "PHONE NUMBER",
@@ -76,12 +78,14 @@ class _myappState extends State<myapp> {
                         Padding(
                           padding: const EdgeInsets.only(
                               top: 12.0, right: 70, left: 70),
-                          child: RaisedButton(
+                          child: ElevatedButton(
                             onPressed: () {},
-                            child: Text("VERIFY"),
-                            color: Colors.red,
-                            textColor: Colors.white,
-                            splashColor: Colors.green,
+                            child: Text("SEND OTP"),
+                            style: ElevatedButton.styleFrom(
+                                primary: Colors.red,
+                                onPrimary: Colors.white,
+                                shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(20))),
                           ),
                         ),
                         Icon(
