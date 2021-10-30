@@ -3,6 +3,7 @@
 import 'package:adhaarhackathon/converting_response.dart';
 import 'package:adhaarhackathon/network.dart';
 import 'package:adhaarhackathon/posts.dart';
+import 'package:adhaarhackathon/secondpg.dart';
 import 'package:flutter/material.dart';
 import 'package:uuid/uuid.dart';
 
@@ -24,19 +25,18 @@ class _myappState extends State<myapp> {
   final formkey = GlobalKey<FormState>();
 
   final TextEditingController _uidText = TextEditingController();
-  final TextEditingController _txnIdText = TextEditingController();
+  //final TextEditingController _txnIdText = TextEditingController();
   Future<optApi>? _datas;
   var uuid = Uuid();
 
   void getRes(String uid, var txnId) {
     setState(() {
       _datas = createOtp(uid, txnId.v4());
-      if(_datas != null){
+      if (_datas != null) {
         Navigator.push(
-          context, MaterialPageRoute(builder: (context) => otppage()));
-    }});
-    
+            context, MaterialPageRoute(builder: (context) => otppage()));
       }
+    });
   }
 
   @override
@@ -122,19 +122,5 @@ class _myappState extends State<myapp> {
                 )
               ])),
         ));
-  }
-}
-
-class otppage extends StatefulWidget {
-  const otppage({Key? key}) : super(key: key);
-
-  @override
-  _otppageState createState() => _otppageState();
-}
-
-class _otppageState extends State<otppage> {
-  @override
-  Widget build(BuildContext context) {
-    return Container();
   }
 }
