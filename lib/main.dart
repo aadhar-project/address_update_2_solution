@@ -1,10 +1,10 @@
-import 'package:adhaarhackathon/thirdpg.dart';
+import 'package:adhaarhackathon/splash.dart';
 import 'package:flutter/material.dart';
-import 'package:adhaarhackathon/secondpg.dart';
+import 'package:adhaarhackathon/splash.dart';
 
 void main() {
   runApp(MaterialApp(
-    home: const myapp(),
+    home: const Splashscreen(),
     debugShowCheckedModeBanner: false,
   ));
 }
