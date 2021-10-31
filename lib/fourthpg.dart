@@ -1,4 +1,4 @@
-import 'dart:ffi';
+
 
 import 'package:flutter/material.dart';
 
@@ -14,7 +14,7 @@ class _addressformpageState extends State<addressformpage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("AADHAAR"),
+        title: const Text("ADDRESS FORM"),
         shadowColor: Colors.pink.shade200,
         elevation: 20,
         backgroundColor: Colors.red,
@@ -24,13 +24,15 @@ class _addressformpageState extends State<addressformpage> {
           children: [
             Padding(
               padding: const EdgeInsets.only(top: 15, right: 100, left: 100),
-              child: Text(
-                "Address Update Form",
-                style: TextStyle(
-                    color: Colors.redAccent.shade400,
-                    fontSize: 20.0,
-                    fontWeight: FontWeight.bold,
-                    fontStyle: FontStyle.italic),
+              child: Center(
+                child: Text(
+                  "Address Update Form",
+                  style: TextStyle(
+                      color: Colors.redAccent.shade400,
+                      fontSize: 17.0,
+                      fontWeight: FontWeight.bold,
+                      fontStyle: FontStyle.italic),
+                ),
               ),
             ),
             Padding(

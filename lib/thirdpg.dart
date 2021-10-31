@@ -1,6 +1,10 @@
 
 import 'dart:io';
 
+import 'package:adhaarhackathon/fourthpg.dart';
+import 'package:adhaarhackathon/scanimage.dart';
+
+import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 
@@ -12,48 +16,22 @@ class scanningpage extends StatefulWidget {
 }
 
 class _scanningpageState extends State<scanningpage> {
-  // bool _isInitialized = false;
-  // @override
-  // void initState() {
-  //   FlutterMobileVision.start().then((value) => _isInitialized = true);
-  //   super.initState();
-  // }
 
-  // void startScanning() async {
-  //   List<OcrText> textlist;
 
-  //   try {
-  //     textlist = await FlutterMobileVision.read(
-  //       waitTap: false,
-  //       fps: 5,
-  //     );
-  //     for (OcrText text in textlist) {
-  //       // ignore: avoid_print
-  //       print("The text is $text");
-  //     }
-  //     // ignore: empty_catches
-  //   } catch (e) {}
-  //   Navigator.pop(context);
-  // }
-
-  late File _image;
-  final picker = ImagePicker();
-  Future getImage() async {
-    final pickedImage = await picker.pickImage(source: ImageSource.camera);
-    setState(() {
-      if (pickedImage != null) {
-        _image = pickedImage as File;
-      } else {
-        print("No");
-      }
-    });
+  void getImage() async {
+    final cameras = await availableCameras();
+    final firstcam = cameras.first;
+    Navigator.push(
+        context,
+        MaterialPageRoute(
+            builder: (context) => TakePictureScreen(camera: firstcam)));
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("AADHAAR"),
+        title: const Text("UPLOAD DOCUMENTS"),
         shadowColor: Colors.pink.shade200,
         elevation: 20,
         backgroundColor: Colors.red,
@@ -78,7 +56,7 @@ class _scanningpageState extends State<scanningpage> {
           Padding(
             padding: const EdgeInsets.only(top: 10),
             child: Container(
-              child: Image.file(_image),
+              
             ),
           ),
           Padding(
@@ -97,7 +75,10 @@ class _scanningpageState extends State<scanningpage> {
           Padding(
             padding: const EdgeInsets.only(right: 90.0, left: 90.0, top: 20.0),
             child: ElevatedButton.icon(
-              onPressed: () {},
+              onPressed: () {
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => const addressformpage()));
+              },
               icon: const Icon(Icons.send),
               label: const Text(
                 "SUBMIT",

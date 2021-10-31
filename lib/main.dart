@@ -4,18 +4,21 @@ import 'package:adhaarhackathon/converting_response.dart';
 import 'package:adhaarhackathon/network.dart';
 import 'package:adhaarhackathon/posts.dart';
 import 'package:adhaarhackathon/secondpg.dart';
+import 'package:adhaarhackathon/splash.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:uuid/uuid.dart';
-import 'builder.dart';
+
 import 'package:camera/camera.dart';
 
-void main() {
+Future<void> main() async {
 
-  //WidgetsFlutterBinding.ensureInitialized();
+  WidgetsFlutterBinding.ensureInitialized();
+  final cameras = await availableCameras();
+  final firstCamera = cameras.first;
 
   runApp(const MaterialApp(
-    home: myapp(),
+    home: Splashscreen(),
     debugShowCheckedModeBanner: false,
   ));
 }
