@@ -1,9 +1,8 @@
-// ignore_for_file: camel_case_types
 
-import 'package:adhaarhackathon/scanimage.dart';
+import 'dart:io';
+
 import 'package:flutter/material.dart';
-import 'package:flutter_mobile_vision/flutter_mobile_vision.dart';
-import 'package:camera/camera.dart';
+import 'package:image_picker/image_picker.dart';
 
 class scanningpage extends StatefulWidget {
   const scanningpage({Key? key}) : super(key: key);
@@ -13,27 +12,41 @@ class scanningpage extends StatefulWidget {
 }
 
 class _scanningpageState extends State<scanningpage> {
-  bool _isInitialized = false;
-  @override
-  void initState() {
-    FlutterMobileVision.start().then((value) => _isInitialized = true);
-    super.initState();
-  }
+  // bool _isInitialized = false;
+  // @override
+  // void initState() {
+  //   FlutterMobileVision.start().then((value) => _isInitialized = true);
+  //   super.initState();
+  // }
 
-  void startScanning() async {
-    List<OcrText> textlist;
+  // void startScanning() async {
+  //   List<OcrText> textlist;
 
-    try {
-      textlist = await FlutterMobileVision.read(
-        waitTap: true,
-        fps: 5,
-      );
-      for (OcrText text in textlist) {
-        // ignore: avoid_print
-        print("The text is $text");
+  //   try {
+  //     textlist = await FlutterMobileVision.read(
+  //       waitTap: false,
+  //       fps: 5,
+  //     );
+  //     for (OcrText text in textlist) {
+  //       // ignore: avoid_print
+  //       print("The text is $text");
+  //     }
+  //     // ignore: empty_catches
+  //   } catch (e) {}
+  //   Navigator.pop(context);
+  // }
+
+  late File _image;
+  final picker = ImagePicker();
+  Future getImage() async {
+    final pickedImage = await picker.pickImage(source: ImageSource.camera);
+    setState(() {
+      if (pickedImage != null) {
+        _image = pickedImage as File;
+      } else {
+        print("No");
       }
-      // ignore: empty_catches
-    } catch (e) {}
+    });
   }
 
   @override
@@ -52,7 +65,7 @@ class _scanningpageState extends State<scanningpage> {
                   top: 12.0, right: 70, left: 70, bottom: 400),
               child: ElevatedButton.icon(
                 onPressed: () {
-                  startScanning();
+                  getImage();
                 },
                 icon: const Icon(Icons.scanner),
                 label: const Text("SCAN DOCUMENT"),
@@ -64,7 +77,9 @@ class _scanningpageState extends State<scanningpage> {
               )),
           Padding(
             padding: const EdgeInsets.only(top: 10),
-            child: Container(),
+            child: Container(
+              child: Image.file(_image),
+            ),
           ),
           Padding(
             padding: const EdgeInsets.only(right: 70.0, left: 70.0, top: 50.0),

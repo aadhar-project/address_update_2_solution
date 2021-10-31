@@ -27,14 +27,15 @@ environment:
 # the latest version available on pub.dev. To see which dependencies have newer
 # versions available, run `flutter pub outdated`.
 dependencies:
+  animated_splash_screen: ^1.1.0
   camera: ^0.9.4+3
-  cupertino_icons: ^1.0.2
+  cupertino_icons: ^1.0.3
   flutter:
     sdk: flutter
   flutter_mobile_vision: ^0.1.4+1
   geocoding: ^2.0.1
-  geolocator: ^7.7.1
   http: ^0.13.4
+  image_picker: ^0.8.4+4
   path: ^1.8.0
   path_provider: ^2.0.6
   uuid: ^3.0.5
