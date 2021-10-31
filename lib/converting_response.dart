@@ -12,7 +12,10 @@ Future<optApi> createOtp(String uid, String txnId) async {
         'txnId': txnId,
       }));
   if (response.statusCode == 200) {
-    return optApi.fromJson(jsonDecode(response.body));
+    // ignore: unused_local_variable
+    optApi result = optApi.fromJson(jsonDecode(response.body));
+    print(result.hashCode);
+    return result;
   } else {
     throw Exception("Failed to generate otp");
   }

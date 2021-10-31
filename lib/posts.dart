@@ -1,5 +1,5 @@
 // ignore: camel_case_types
-class optApi {
+class optApi{
   final String uid;
   final String txnId;
 
